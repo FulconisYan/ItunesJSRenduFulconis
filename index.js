@@ -1,23 +1,42 @@
-function envoyerRequete(location) {
-    return new Promise((resolve, reject) => {
-        console.log(`making request to ${location}`);
-        if (location === "Google") {
-            resolve("Google dit hello !");
-        } else {
-            reject({ message: "On ne peut parler qu'à Google" });
-        }
+
+window.onload = function (){
+    let button = document.querySelector("#recherche");
+    let search = document.querySelector("#search");
+    let output = document.querySelector("#output");
+    button.addEventListener('click',(event) => {
+       getDataFromItunes(search)
     });
 }
 
-function traiterReponse(response) {
-    return new Promise((resolve, reject) => {
-        console.log("Traitement de la réponse");
-        resolve(`Réponse traitée... ${response}`);
-    });
+async function getDataFromItunes() {
+    console.log(search);
+    console.log('Bonjour');
+    let url= 'https://itunes.apple.com/search?term='+search.value;
+
+    await fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            let finalHTML = '';
+            json.results.forEach(monson=>
+            {
+               finalHTML += `<figure>
+               <figcaption>${monson.trackName}</figcaption>
+               <img src="${monson.artworkUrl100}">
+               <audio
+                   controls
+                    src="${monson.previewUrl}">
+                    Your browser does not support the
+                    <code>audio</code> element.
+                </audio>
+                </figure>
+                <br/> `
+            })
+            output.innerHTML = finalHTML;
+        })
+        .catch( error => console.log(error));
 }
 
-fetch("https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/")
-    .then(response => response.json())
-    .then(json => console.log(json));
+
 
 
