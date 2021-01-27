@@ -2,16 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Itunes Yan Fulconis</title>
+    <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="index.js"></script>
     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-<h1> Test de l'API iTunes</h1>
-<p>Entrer un artiste ici :</p><input id="search" /> </p>
-<input id="recherche" type="button" value="Rechercher">
+<div id="bandeau">
+    <h1 class="font-sans"> Test de l'API </h1>
+    <img id="imagelogo" src="img/logo_itunes.png">
+</div>
+<div id="conteneur">
+    <div class="row" id ="artiste">
+        <h3 class="header"> Entrer un artiste ici : </h3>
+    </div>
+    <div class="row" id ="searchtext">
+        <div class="input-field col s3">
+            <input id="search" />
+        </div>
+    </div>
+    <div class="row" id="searchbutton">
+        <input class="btn waves-effect waves-light" id="recherche" type="button" value="Rechercher"><i class="material-icons right"></i></input>
+    </div>
+
+</div>
+
+
 <br/> <br/>
+<div id="loaderImage"></div>
 <div id="output"></div>
 </body>
 </html>
